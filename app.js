@@ -18,7 +18,7 @@ app.listen(port, () => {
 
 app.get("/", (req, res) => {
   res.send(
-    "<h1 style='text-align: center'>Wellcome to FunOfHeuristic <br><br>😃👻😃👻😃👻😃👻😃</h1>"
+    "<h1 style='text-align: center'>Wellcome to Market-Jay <br><br>😃👻😃👻😃👻😃👻😃</h1>"
   );
 });
 
@@ -59,19 +59,21 @@ async function sendMail(user, callback) {
     table= table.concat(`<tr style="background-color: beige;"> <td width=20px align ="center">${index+1}</td><td width=200px>${user.products[index].name}</td><td width=50px align ="center">${user.products[index].count} </td><td width=80px align ="right">${user.products[index].price}</td> </tr>`);
   }
   table= table.concat('<tr><td  colspan="4" style="border-top:dashed 2px #179dd8;"></td></tr>');
-  table= table.concat('<tr style="background-color: palegreen;"><td colspan="3" align ="right">Delivery Fee</td><td>Rs 200.00</td></tr>');
-  table= table.concat(`<tr style="background-color: palegreen;"><td colspan="3" align ="right">Total Price</td><td>Rs ${user.totalPrice}</td></tr>`);
+  table= table.concat('<tr style="background-color: palegreen;"><td colspan="3">Delivery Fee</td><td align ="right">Rs 200.00</td></tr>');
+  table= table.concat(`<tr style="background-color: palegreen;"><td colspan="3">Discount</td><td align ="right">Rs ${user.discount}</td></tr>`);
+  table= table.concat(`<tr style="background-color: palegreen;"><td colspan="3">Total Price</td><td align ="right">Rs ${user.totalPrice}</td></tr>`);
   table= table.concat('</table> </h4>');
+  table= table.concat('<br> <a href="https://market-jay.web.app/recipes">Order again, Market-Jay APP </a>');
 
   let mailOptions = {
     from: '"MARKET-JAY"<jayodafruits@gmail.com>', // sender address
     to: user.email, // list of receivers,
     cc:'janithag@gmail.com',
     subject: `MARKET-JAY E-Bill | ${user.orderNo}`, // Subject line
-    html: `<h2>Hi ${user.name}</h2><br>
-    <h3>Thanks for purchesing from MARKET-JAY App..!!</h3><br>
-    <h3>Order Reference: ${user.orderNo}</h3><br>
-    <h3>Order Date & Time: ${user.date}</h3><br>
+    html: `<h2>Hi ${user.name}</h2>
+    <h3>Thanks for purchesing from MARKET-JAY App..!!</h3>
+    <h3>Order Reference: ${user.orderNo}</h3>
+    <h3>Order Date & Time: ${user.date}</h3>
     <h3>Your total price: Rs ${user.totalPrice}</h3><br>`+table
 
     
